@@ -137,4 +137,50 @@ WHERE trigger_name = 'check_song_duration_trigger';
    WHERE trigger_name = 'check_song_duration_trigger';
    ```
 ---
-### Function And Procedures
+## Function And Procedures
+### Hanifi
+Function to get the total number of songs liked by a user
+```sql
+CREATE OR REPLACE FUNCTION get_total_likes(p_user_id INT)
+RETURNS INT AS $$
+DECLARE
+    total_likes INT;
+BEGIN
+    SELECT COUNT(*) INTO total_likes
+    FROM Likes
+    WHERE user_id = p_user_id;
+
+    RETURN total_likes;
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT user_id, get_total_likes(user_id) AS total_likes
+FROM Users
+WHERE Users.user_id = 1;
+```
+#### Explanation
+1. Inside the function body, a variable total_likes of type integer is declared:
+   ```sql
+   DECLARE
+   total_likes INT;
+   ```
+   This variable will hold the total number of likes for the user.
+2. The function performs a SQL query to count the number of likes for the specified user:
+   ```sql
+   SELECT COUNT(*) INTO total_likes
+   FROM Likes
+   WHERE user_id = p_user_id;
+   ```
+   The SELECT COUNT(*) statement retrieves the count of rows from the Likes table where the user_id matches the p_user_id parameter. The result is stored in the total_likes variable using the INTO clause.
+3. Finally, the function returns the total_likes value:
+   ```sql
+   RETURN total_likes;
+   ```
+4. This function can be used in a query to retrieve the user ID and their total number of likes:
+   ```sql
+   SELECT user_id, get_total_likes(user_id) AS total_likes
+   FROM Users
+   WHERE Users.user_id = 1;
+   ```
+   In this example, the function is called within the SELECT statement to calculate the total likes for a specific user with user_id equal to 1. The result is returned as a column named total_likes alongside the user ID.
+---
