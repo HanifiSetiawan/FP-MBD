@@ -361,6 +361,44 @@ WHERE Users.user_id = 1;
    WHERE Users.user_id = 1;
    ```
    In this example, the function is called within the SELECT statement to calculate the total likes for a specific user with user_id equal to 1. The result is returned as a column named total_likes alongside the user ID.
+### Wildan
+Function to show how many songs in each album
+```sql
+CREATE OR REPLACE FUNCTION song_count_in_album(p_album_id INT)
+RETURNS INT AS $$
+BEGIN
+    RETURN (
+        SELECT COUNT(*)
+        FROM Songs
+        WHERE album_id = p_album_id
+    );
+END;
+$$ LANGUAGE plpgsql;
+
+SELECT album_title, song_count_in_album(1) AS total_song
+FROM albums;
+```
+### Explanation
+1. First we make a function with RETURN INTEGER cluase
+```sql
+CREATE OR REPLACE FUNCTION song_count_in_album(p_album_id INT)
+RETURNS INT AS $$
+```
+2. After that, we will begin the function. Inside this function, we will have to use COUNT to count all the songs inside every album in the database.
+```sql
+BEGIN
+    RETURN (
+        SELECT COUNT(*)
+        FROM Songs
+        WHERE album_id = p_album_id
+    );
+```
+3. If we finished the function, we can check the it with the following command:
+```sql
+SELECT album_title, song_count_in_album(1) AS total_song
+FROM albums;
+```
+It will show the album_title that available in the database and the amount of song inside each album
 ---
 ## Indexing
 ### Hanifi
