@@ -7,4 +7,5 @@
 
 ## Queries
 ### Hanifi :
+---
 1. Query to retrieve the names of users along with the total number of songs they have liked
