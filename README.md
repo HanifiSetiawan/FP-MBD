@@ -56,6 +56,12 @@ The Database consist of 9 table:
    - user_id (foreign key referencing the users table)
    - song_id (foreign key referencing the songs table)
    - album_id (foreign key referencing the albums table)
+---
+## Tables and Relation
+---
+##CDM
+![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115058216/63a23f9e-a529-4b76-999a-d4720d113124)
+
 ## Queries
 ### Hanifi 
 1. Query to retrieve the names of users along with the total number of songs they have liked
