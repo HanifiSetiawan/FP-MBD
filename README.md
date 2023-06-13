@@ -114,6 +114,9 @@ JOIN Albums al ON s.album_id = al.album_id
 WHERE l.user_id = 1
   AND s.song_genre = 'Pop';
 ```
+#### Output:
+![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115058216/abad9c8b-a5ab-4cc3-86d9-8ad52cc7bea2)
+---
 
 ### Wildan
 1. Query to show the most played song for each user
