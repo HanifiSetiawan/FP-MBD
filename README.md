@@ -412,5 +412,10 @@ The index will create an index of the album_id. It can improve the performance o
 ```sql
 CREATE INDEX idx_album_id ON Albums (album_id);
 ```
+### Wira
+This index will speed up queries that involve searching or sorting based on the artist_name column in the Artists table.
+```sql
+CREATE INDEX idx_artists_artistname ON Artists (artist_name);
+```
 
 ---
