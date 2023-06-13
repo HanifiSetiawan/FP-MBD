@@ -58,6 +58,16 @@ The Database consist of 9 table:
    - album_id (foreign key referencing the albums table)
 ---
 ## Tables and Relation
+- The service will have several type of subscription
+   - Each subscription plan will have different price and duration
+   - User can choose whether to continue their subscription or not
+- All users and artists may have their own playlist
+   - Inside the playlist, there will be playlist name, id and song
+- Service will save user’s history of their played song
+- Each song will have their own artist and album
+   - Album will have at least 1 song inside and it will have their own artist
+- Users can recommend a song to any user they’d like to share with
+
 ---
 ## CDM
 ![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115058216/63a23f9e-a529-4b76-999a-d4720d113124)
