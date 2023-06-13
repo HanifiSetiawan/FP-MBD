@@ -7,7 +7,55 @@
 
 ## Database
 The Database consist of 9 table:
-
+1. Subscriptions
+   - subscription_id (primary key)
+   - subscription_name
+   - price (in dollars)
+   - duration (in days)
+2. Users
+  - user_id (primary key)
+  - username
+  - password
+  - email
+  - date_of_birth
+  - subscription_id (foreign key referencing the Subscriptions table)
+3. Artists
+  - artist_id (primary key)
+  - artist_name
+  - brief biography
+  - country
+4. Albums
+  - album_id (primary key)
+  - album_title
+  - release_date
+  - artist_id (foreign key referencing the artists table)
+5. Songs
+  - song_id (primary key)
+  - song_title
+  - song_genre
+  - duration (in seconds)
+  - artist_id (foreign key referencing the artists table)
+  - album_id (foreign key referencing the albums table)
+6. Playlists
+  - playlist_id (primary key)
+  - playlist_name
+  - brief description
+  - creator_id (foreign key referencing the users table)
+7. Likes
+  - like_id (primary key)
+  - user_id (foreign key referencing the users table)
+  - song_id (foreign key referencing the songs table)
+  - album_id (foreign key referencing the albums table)
+8. History
+  - history_id (primary key)
+  - Timestamp
+  - user_id (foreign key referencing the users table)
+  - song_id (foreign key referencing the songs table)
+9. Recommendations
+  - recommendation_id (primary key)
+  - user_id (foreign key referencing the users table)
+  - song_id (foreign key referencing the songs table)
+  - album_id (foreign key referencing the albums table)
 ## Queries
 ### Hanifi :
 ---
