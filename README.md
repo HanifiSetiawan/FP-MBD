@@ -59,7 +59,7 @@ The Database consist of 9 table:
 ---
 ## Tables and Relation
 ---
-##CDM
+## CDM
 ![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115058216/63a23f9e-a529-4b76-999a-d4720d113124)
 
 ## Queries
