@@ -62,6 +62,9 @@ The Database consist of 9 table:
 ## CDM
 ![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115058216/63a23f9e-a529-4b76-999a-d4720d113124)
 
+## PDM
+![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115058216/d2d181a5-d266-4a32-9264-41992b67f0ff)
+
 ## Queries
 ### Hanifi 
 1. Query to retrieve the names of users along with the total number of songs they have liked
