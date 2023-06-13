@@ -184,3 +184,10 @@ WHERE Users.user_id = 1;
    ```
    In this example, the function is called within the SELECT statement to calculate the total likes for a specific user with user_id equal to 1. The result is returned as a column named total_likes alongside the user ID.
 ---
+## Indexing
+### Hanifi
+This index creates a multi-column index on the Likes table, involving the user_id, song_id, and album_id columns. It can enhance the performance of queries that involve filtering or sorting based on these columns collectively
+```sql
+CREATE INDEX idx_user_likes ON Likes (user_id, song_id, album_id);
+```
+---
