@@ -4,7 +4,7 @@
 | --------------- | --------------- |
 | Hanifi Abrar Setiawan | 5025211066 |
 | Vija Wildan Gita Prabawa | 5025211261 |
-| I Putu Arya Prawira Wiwekananda | 5025211 |
+| I Putu Arya Prawira Wiwekananda | 5025211065 |
 
 ## Database
 The Database consist of 9 table:
