@@ -3,7 +3,7 @@
 | Name | NRP |
 | --------------- | --------------- |
 | Hanifi Abrar Setiawan | 5025211066 |
-| | |
+| Vija Wildan Gita Prabawa | 5025211261 |
 
 ## Database
 The Database consist of 9 table:
@@ -105,6 +105,43 @@ JOIN Albums al ON s.album_id = al.album_id
 WHERE l.user_id = 1
   AND s.song_genre = 'Pop';
 ```
+
+### Wildan
+1. Query to show the most played song for each user
+```sql
+SELECT u.username, s.song_title, COUNT(*) AS play_count
+FROM Users u
+JOIN History h ON u.user_id = h.user_id
+JOIN Songs s ON h.song_id = s.song_id
+GROUP BY u.user_id, u.username, s.song_id, s.song_title
+HAVING COUNT(*) = (
+    SELECT MAX(sub.play_count)
+    FROM (
+        SELECT u.user_id, s.song_id, COUNT(*) AS play_count
+        FROM Users u
+        JOIN History h ON u.user_id = h.user_id
+        JOIN Songs s ON h.song_id = s.song_id
+        GROUP BY u.user_id, s.song_id
+    ) AS sub
+    WHERE sub.user_id = u.user_id
+)
+ORDER BY play_count DESC;
+```
+2. Query to show the total income per month that come from subscription fees
+```sql
+SELECT '$' || SUM(s.price) AS total_income_per_month
+FROM Users u
+JOIN Subscriptions s ON u.subscription_id = s.subscription_id;
+```
+3. Query to show the most liked song for each genre
+```sql
+SELECT s.song_genre, MIN(s.song_title) AS song_title, COUNT(l.like_id) AS like_count
+FROM Songs s
+LEFT JOIN Likes l ON s.song_id = l.song_id
+GROUP BY s.song_genre
+ORDER BY s.song_genre;
+```
+
 ---
 ## Triggers
 ### Hanifi
