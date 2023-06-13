@@ -4,6 +4,7 @@
 | --------------- | --------------- |
 | Hanifi Abrar Setiawan | 5025211066 |
 | Vija Wildan Gita Prabawa | 5025211261 |
+| I Putu Arya Prawira Wiwekananda | 5025211 |
 
 ## Database
 The Database consist of 9 table:
@@ -70,10 +71,10 @@ The Database consist of 9 table:
 
 ---
 ## CDM
-![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115058216/63a23f9e-a529-4b76-999a-d4720d113124)
+![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115712593/93427edd-f4f6-4c29-8016-ecc3adb915e0)
 
 ## PDM
-![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115058216/d2d181a5-d266-4a32-9264-41992b67f0ff)
+![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115712593/1cb1c703-9ea8-4a28-83f5-0309bc5bce7a)
 
 ## Queries
 ### Hanifi 
