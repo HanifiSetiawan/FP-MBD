@@ -221,6 +221,88 @@ WHERE trigger_name = 'check_song_duration_trigger';
    FROM information_schema.triggers
    WHERE trigger_name = 'check_song_duration_trigger';
    ```
+   
+### Wildan
+Trigger to make each user have a limit of 50 playlists
+```sql
+CREATE OR REPLACE FUNCTION check_playlist_limit()
+RETURNS TRIGGER AS $$
+DECLARE
+    playlist_count INTEGER;
+BEGIN
+    SELECT COUNT(*) INTO playlist_count
+    FROM Playlists
+    WHERE creator_id = NEW.creator_id;
+    
+    IF playlist_count >= 5 THEN
+        RAISE EXCEPTION 'Playlist limit exceeded. Maximum allowed: 5';
+    END IF;
+    
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE OR REPLACE TRIGGER enforce_playlist_limit
+BEFORE INSERT ON Playlists
+FOR EACH ROW
+EXECUTE FUNCTION check_playlist_limit();
+```
+
+### Explanation
+1. First, we create a function called `check_playlist_limit()` that used RETURNS TRIGGER clause.
+```sql
+CREATE OR REPLACE FUNCTION check_playlist_limit()
+RETURNS TRIGGER AS $$
+```
+2. Inside the function we will declare the `playlist_count` as integer.
+```sql
+DECLARE
+    playlist_count INTEGER;
+```
+3. After declaring, we will begin the function with counting the playlist for each `creator_id`
+```sql
+BEGIN
+    SELECT COUNT(*) INTO playlist_count
+    FROM Playlists
+    WHERE creator_id = NEW.creator_id;
+```
+4. If a creator reached 5 playlist and try to add a new one, it will print and exception that the user can't make another playlist.
+```sql
+IF playlist_count >= 5 THEN
+        RAISE EXCEPTION 'Playlist limit exceeded. Maximum allowed: 5';
+    END IF;
+```
+5. After we run the function, we will execute the trigger as the following:
+```sql
+CREATE OR REPLACE TRIGGER enforce_playlist_limit
+BEFORE INSERT ON Playlists
+FOR EACH ROW
+EXECUTE FUNCTION check_playlist_limit();
+```
+6. To check if the trigger works, we will run the following insert command
+```sql
+INSERT INTO Playlists (playlist_id, playlist_name, description, creator_id)
+VALUES
+    (16, 'Playlist 1', 'Description 1', 15),
+    (17, 'Playlist 2', 'Description 2', 15),
+    (18, 'Playlist 3', 'Description 3', 15),
+    (19, 'Playlist 4', 'Description 4', 15),
+	(20, 'Playlist 5', 'Description 5', 15);
+```
+This part will insert 5 new playlist for `creator_id` 15 who haven't made any playlist yet. After that we will run the following:
+```sql
+INSERT INTO Playlists (playlist_id, playlist_name, description, creator_id)
+VALUES
+    (21, 'Playlist 6', 'Description 6', 15);
+```
+If the trigger works, it will print an error message:
+```
+ERROR:  Playlist limit exceeded. Maximum allowed: 5
+CONTEXT:  PL/pgSQL function check_playlist_limit() line 10 at RAISE 
+
+SQL state: P0001
+```
+
 ---
 ## Function And Procedures
 ### Hanifi
