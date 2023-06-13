@@ -85,7 +85,7 @@ FROM Users u
 LEFT JOIN Likes l ON u.user_id = l.user_id
 GROUP BY u.username;
 ```
-Output:
+#### Output:
 ![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115058216/710ece08-e5eb-4676-accd-d213fc962bd0)
 
 2. Query to retrieve the top 5 recommended songs along with the corresponding artist and album information
