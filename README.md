@@ -88,6 +88,7 @@ GROUP BY u.username;
 #### Output:
 ![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115058216/710ece08-e5eb-4676-accd-d213fc962bd0)
 
+
 2. Query to retrieve the top 5 recommended songs along with the corresponding artist and album information
 ```sql
 SELECT s.song_title, a.artist_name, al.album_title
@@ -99,6 +100,10 @@ GROUP BY s.song_id, s.song_title, a.artist_name, al.album_title
 ORDER BY COUNT(r.recommendation_id) DESC
 LIMIT 5;
 ```
+#### Output:
+![image](https://github.com/HanifiSetiawan/FP-MBD/assets/115058216/7f1ed6b8-6c5b-46eb-b92d-ddefec913c6a)
+
+
 3. Query to retrieve the details of songs liked by a specific user along with the corresponding artist and album information, filtered by a specific genre
 ```sql
 SELECT s.song_title, a.artist_name, al.album_title
