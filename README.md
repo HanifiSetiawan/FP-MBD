@@ -143,6 +143,34 @@ GROUP BY s.song_genre
 ORDER BY s.song_genre;
 ```
 
+### Wira
+1. Query to show the songs from each artists
+```sql
+SELECT a.artist_name, s.song_genre
+FROM Artists a
+JOIN Songs s ON a.artist_id = s.artist_id;
+```
+2. Query to show the genre of each artists and the total likes that they have
+```sql
+SELECT a.artist_name, s.song_genre, COUNT(l.like_id) AS total_likes
+FROM Artists a
+JOIN Songs s ON a.artist_id = s.artist_id
+LEFT JOIN Likes l ON s.song_id = l.song_id
+GROUP BY a.artist_name, s.song_genre;
+```
+3. Query to show the latest songs that they played from each user
+```sql
+SELECT u.username, s.song_title AS latest_song
+FROM Users u
+LEFT JOIN History h ON u.user_id = h.user_id
+LEFT JOIN Songs s ON h.song_id = s.song_id
+WHERE h.Timestamp = (
+  SELECT MAX(Timestamp)
+  FROM History
+  WHERE user_id = u.user_id
+)
+```
+
 ---
 ## Triggers
 ### Hanifi
