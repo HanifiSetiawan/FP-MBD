@@ -399,6 +399,7 @@ SELECT album_title, song_count_in_album(1) AS total_song
 FROM albums;
 ```
 It will show the album_title that available in the database and the amount of song inside each album
+
 ---
 ## Indexing
 ### Hanifi
@@ -406,4 +407,10 @@ This index creates a multi-column index on the Likes table, involving the user_i
 ```sql
 CREATE INDEX idx_user_likes ON Likes (user_id, song_id, album_id);
 ```
+### Wildan
+The index will create an index of the album_id. It can improve the performance of queries which allows for faster data retrieval.
+```sql
+CREATE INDEX idx_album_id ON Albums (album_id);
+```
+
 ---
