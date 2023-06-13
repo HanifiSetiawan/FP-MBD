@@ -113,4 +113,30 @@ FROM information_schema.triggers
 WHERE trigger_name = 'check_song_duration_trigger';
 ```
 #### Explanation
-
+1. The function is defined with the RETURNS TRIGGER clause, indicating that it is a trigger function that operates on a row-level and returns a trigger record.
+2. Inside the function body, there is a conditional statement:
+   ```sql
+   IF NEW.duration > 300 THEN
+    RAISE EXCEPTION 'Maximum song duration exceeded';
+   END IF;
+   ```
+   This checks if the duration value of the new row being inserted or updated (NEW.duration) exceeds the maximum allowed duration of 300. If it does, an exception is raised with the message "Maximum song duration       
+   exceeded".
+3. The function then returns the NEW trigger record. This is required for BEFORE triggers to allow the operation to proceed if the function does not raise an exception. If an exception is raised, the trigger action 
+   (insert or update) will be canceled.
+4. The trigger is created using the CREATE TRIGGER statement:
+   ```sql
+   CREATE TRIGGER check_song_duration_trigger
+   BEFORE INSERT OR UPDATE ON Songs
+   FOR EACH ROW
+   EXECUTE FUNCTION check_song_duration();
+   ```
+   The trigger is associated with the Songs table and is triggered before each row is inserted or updated. It calls the check_song_duration() function to perform the validation.
+5. Finally, a query is executed to check the existence of the trigger in the "information_schema.triggers" view:
+   ```sql
+   SELECT *
+   FROM information_schema.triggers
+   WHERE trigger_name = 'check_song_duration_trigger';
+   ```
+---
+### Function And Procedures
