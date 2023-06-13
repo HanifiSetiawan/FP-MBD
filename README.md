@@ -1,9 +1,12 @@
-# FP-MBD
+# Music Streaming Service Management
 
 | Name | NRP |
 | --------------- | --------------- |
 | Hanifi Abrar Setiawan | 5025211066 |
 | | |
+
+## Database
+The Database consist of 9 table:
 
 ## Queries
 ### Hanifi :
