@@ -57,7 +57,7 @@ The Database consist of 9 table:
    - song_id (foreign key referencing the songs table)
    - album_id (foreign key referencing the albums table)
 ## Queries
-### Hanifi :
+### Hanifi 
 ---
 1. Query to retrieve the names of users along with the total number of songs they have liked
 ```sql
@@ -89,3 +89,28 @@ JOIN Albums al ON s.album_id = al.album_id
 WHERE l.user_id = 1
   AND s.song_genre = 'Pop';
 ```
+## Triggers
+### Hanifi
+Trigger to enforce a maximum duration for songs added to an album
+```sql
+CREATE OR REPLACE FUNCTION check_song_duration()
+RETURNS TRIGGER AS $$
+BEGIN
+    IF NEW.duration > 300 THEN
+        RAISE EXCEPTION 'Maximum song duration exceeded';
+    END IF;
+    RETURN NEW;
+END;
+$$ LANGUAGE plpgsql;
+
+CREATE TRIGGER check_song_duration_trigger
+BEFORE INSERT OR UPDATE ON Songs
+FOR EACH ROW
+EXECUTE FUNCTION check_song_duration();
+
+SELECT *
+FROM information_schema.triggers
+WHERE trigger_name = 'check_song_duration_trigger';
+```
+#### Explanation
+
